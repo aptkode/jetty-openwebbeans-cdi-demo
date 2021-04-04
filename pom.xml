@@ -1,80 +1,97 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.aptkode</groupId>
-  <artifactId>jetty-cdi-demo</artifactId>
+  <artifactId>jetty11-cdi-demo</artifactId>
   <version>1.0-SNAPSHOT</version>
   <packaging>war</packaging>
 
-  <name>jetty-cdi-demo Maven Webapp</name>
+  <name>jetty11-cdi-demo Maven Webapp</name>
   <!-- FIXME change it to the project's website -->
   <url>http://www.example.com</url>
 
   <properties>
-    <openwebbeans-version>2.0.22</openwebbeans-version>
-    <geronimo_annotation-version>1.0</geronimo_annotation-version>
-    <geronimo_interceptor-version>1.0</geronimo_interceptor-version>
-    <geronimo_cdi-version>1.0.1</geronimo_cdi-version>
-    <geronimo_atinject-version>1.0</geronimo_atinject-version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.source>1.7</maven.compiler.source>
     <maven.compiler.target>1.7</maven.compiler.target>
+    <openwebbeans-version>2.0.22</openwebbeans-version>
   </properties>
+
 
   <dependencies>
     <dependency>
       <groupId>org.apache.openwebbeans</groupId>
       <artifactId>openwebbeans-spi</artifactId>
       <version>${openwebbeans-version}</version>
+      <classifier>jakarta</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.openwebbeans</groupId>
       <artifactId>openwebbeans-impl</artifactId>
       <version>${openwebbeans-version}</version>
+      <classifier>jakarta</classifier>
+      <exclusions>
+        <exclusion>
+          <artifactId>openwebbeans-spi</artifactId>
+          <groupId>org.apache.openwebbeans</groupId>
+        </exclusion>
+      </exclusions>
     </dependency>
     <dependency>
       <groupId>org.apache.openwebbeans</groupId>
       <artifactId>openwebbeans-web</artifactId>
       <version>${openwebbeans-version}</version>
+      <classifier>jakarta</classifier>
+      <exclusions>
+        <exclusion>
+          <artifactId>openwebbeans-el22</artifactId>
+          <groupId>org.apache.openwebbeans</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>openwebbeans-impl</artifactId>
+          <groupId>org.apache.openwebbeans</groupId>
+        </exclusion>
+      </exclusions>
     </dependency>
     <dependency>
       <groupId>org.apache.openwebbeans</groupId>
       <artifactId>openwebbeans-jetty9</artifactId>
       <version>${openwebbeans-version}</version>
+      <classifier>jakarta</classifier>
+      <exclusions>
+        <exclusion>
+          <artifactId>openwebbeans-impl</artifactId>
+          <groupId>org.apache.openwebbeans</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>openwebbeans-web</artifactId>
+          <groupId>org.apache.openwebbeans</groupId>
+        </exclusion>
+      </exclusions>
     </dependency>
     <dependency>
-      <groupId>org.apache.geronimo.specs</groupId>
-      <artifactId>geronimo-annotation_1.3_spec</artifactId>
-      <version>${geronimo_annotation-version}</version>
+      <groupId>jakarta.annotation</groupId>
+      <artifactId>jakarta.annotation-api</artifactId>
+      <version>2.0.0</version>
     </dependency>
     <dependency>
-      <groupId>org.apache.geronimo.specs</groupId>
-      <artifactId>geronimo-interceptor_1.2_spec</artifactId>
-      <version>${geronimo_interceptor-version}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.geronimo.specs</groupId>
-      <artifactId>geronimo-jcdi_2.0_spec</artifactId>
-      <version>${geronimo_cdi-version}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.geronimo.specs</groupId>
-      <artifactId>geronimo-atinject_1.0_spec</artifactId>
-      <version>${geronimo_atinject-version}</version>
+      <groupId>jakarta.enterprise</groupId>
+      <artifactId>jakarta.enterprise.cdi-api</artifactId>
+      <version>3.0.0</version>
     </dependency>
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
-      <version>4.12</version>
+      <version>4.11</version>
       <scope>test</scope>
     </dependency>
   </dependencies>
 
   <build>
-    <finalName>jetty-cdi-demo</finalName>
+    <finalName>jetty11-cdi-demo</finalName>
     <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
       <plugins>
         <plugin>
